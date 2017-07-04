@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+  <style>
+    body,p,ul,li{margin:0;padding:0;}
+    .top{width:200px;margin: 20px auto;}
+    .top ul{display: none;}
+    ul{border:1px solid #ccc;list-style-position:inside; }
+    li{border:1px solid #ccc;font:normal 22px/40px 'Mircosoft YaHei';}
+    p{display: inline-block;}
+    ul.last li{font:normal 16px/30px 'Mircosoft YaHei';}
+  </style>
+</head>
+<body>
+  <ul class='top'>
+    <li>
+      <p>一级1</p>
+      <ul>
+        <li>
+          <p>二级1</p>
+          <ul class='last'>
+            <li>
+              <p>三级1</p>
+            </li>
+          </ul>
+        </li> 
+        <li>
+          <p>二级2</p>
+        </li>
+      </ul>  
+    </li>
+    <li>
+      <p>一级2</p>
+    </li>
+    <li>
+      <p>一级3</p>
+    </li>
+  </ul>
+  
+
+  <script>
+    $(function(){
+      /*注意阻止冒泡*/
+
+      $('.top li').on('mouseover',function(ev){
+        var ev = ev || window.event;
+        ev.stopPropagation();
+        var obj = $(this);
+        onShow(obj);
+      }).on('mouseleave',function(ev){
+        /*鼠标离开时应向上找到最上级菜单,隐藏其下的所有菜单,本段代码未添加该功能*/
+        var ev = ev || window.event;
+        ev.stopPropagation();
+        var obj = $(this);
+        onHide(obj);
+      })
+    })
+
+    function onShow(obj){
+      // 获取到子元素的第一个ul
+        var first_ul = obj.find('ul').first();
+        first_ul.show();
+        /*补充:当前li激活时,应让同级其他li的菜单全部隐藏*/
+        var siblingLi = obj.siblings('li');
+        siblingLi.each(function(){
+          onHide($(this));
+          console.log($(this));
+        })
+    }
+
+    function onHide(obj){
+      var this_ul = obj.find('ul').not('.top');
+      if(this_ul){
+        this_ul.hide();
+      }
+      
+    }
+  </script>
+</body>
+</html>
