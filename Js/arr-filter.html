@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  var data = [3,1,2,4,5];
+
+  /*checkNum 函数规定了返回大于3的数;current代表数组遍历到的当前值*/
+  function checkNum(current){
+    return current >= 3;
+  }
+
+  /*调用checkNum函数*/
+  var newData = data.filter(checkNum);
+
+  console.log(newData);
+
+
+  /*二维数组实例*/
+  var data2 = [['三',3],['一',1],['二',2],['四',4],['五',5]];
+  /*与一维类似,只需要在函数内调用current[1]的值*/
+  function checkNum2(current){
+    return current[1] >= 3;
+  }
+
+  var newData2 = data2.filter(checkNum2);
+
+  console.log('newData2: '+newData2);
+</script>
+</html>
