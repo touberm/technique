@@ -11,4 +11,7 @@
   + ./arr-empty.md : 清空数组的方法
 
 - ./SQL/  : SQL技巧
-  + COUNT.md  : 关于count
+  + COUNT.md  : 关于count重复数据查询
+
+- ./PHP/  : PHP技巧
+  + get.md    : 页面之间get传参
